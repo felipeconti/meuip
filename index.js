@@ -19,7 +19,12 @@ app.get('/data', function(req, res){
 });
 
 app.get('/meuip', function(req, res){
-	res.end(JSON.stringify({ip: req.ip}));
+	var data = {
+		remoteAddress: req.connection.remoteAddress,
+		ip: req.ip
+	};
+
+	res.end(JSON.stringify(data));
 });
 
 app.post('/', function(req, res) {
