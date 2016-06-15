@@ -3,6 +3,7 @@ var PORT = process.env.PORT || process.argv[2] || 8085;
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var get_ip = require('ipware')().get_ip;
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -19,12 +20,7 @@ app.get('/data', function(req, res){
 });
 
 app.get('/meuip', function(req, res){
-	var data = {
-		remoteAddress: req.connection.remoteAddress,
-		ip: req.ip
-	};
-
-	res.end(JSON.stringify(data));
+	res.end(JSON.stringify(get_ip(req)));
 });
 
 app.post('/', function(req, res) {
