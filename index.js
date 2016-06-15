@@ -10,27 +10,26 @@ app.use(bodyParser.json());
 
 var servers = {};
 
-app.get('/', function(req, res){
+app.get('/', function(req, res) {
+	res.end("<h1>Seu ip: " + get_ip(req).clientIp + "</h1>");
+});
+
+app.get('/meuip', function(req, res) {
 	res.sendFile(__dirname + "/index.html");
 });
 
-app.get('/data', function(req, res){
-	// console.log("Remote IP: %s", req.ip);
+app.get('/meuip/data', function(req, res) {
 	res.end(JSON.stringify(servers));
-});
-
-app.get('/meuip', function(req, res){
-	res.end(JSON.stringify(get_ip(req)));
 });
 
 app.post('/', function(req, res) {
 	if (req.body.server)
-    	servers[req.body.server] = req.body.ip;
+    	servers[req.body.server] = get_ip(req).clientIp;
 
     res.end();
 });
 
-var server = app.listen(PORT, function(){
+var server = app.listen(PORT, function() {
 	var host = server.address().address;
 	var port = server.address().port;
 
