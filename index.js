@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 var servers = {};
 
 app.get('/', function(req, res) {
-	res.end("<h1>Seu ip: " + get_ip(req).clientIp + "</h1>");
+	res.end(get_ip(req).clientIp);
 });
 
 app.get('/meuip', function(req, res) {
