@@ -16,6 +16,10 @@ app.get('/data', function(req, res){
 	res.end(JSON.stringify(servers));
 });
 
+app.get('/meuip', function(req, res){
+	res.end(JSON.stringify({ip: req.ip}));
+});
+
 app.post('/', function(req, res) {
 	if (req.body.server)
     	servers[req.body.server] = req.body.ip;
