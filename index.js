@@ -1,3 +1,5 @@
+var PORT = process.env.PORT || process.argv[2] || 8085;
+
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
@@ -27,7 +29,7 @@ app.post('/', function(req, res) {
     res.end();
 });
 
-var server = app.listen(8080, function(){
+var server = app.listen(PORT, function(){
 	var host = server.address().address;
 	var port = server.address().port;
 
