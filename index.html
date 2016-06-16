@@ -27,7 +27,15 @@
             function onLoad() {
                 aClient = new HttpClient();
                 aClient.get(window.location.href+'/data', function(response) {
-                    document.getElementById("data").innerHTML = response;
+                    var data = JSON.parse(response);
+                    var html = '';
+                    for (var key in data){
+                        html += '<div>Server: ' + key + '</br>'
+                        html +=     '<br>Data: ' + data[key].date + '</br>'
+                        html +=     '<br>Ip: ' + data[key].ip + '</br>'
+                        html += '</div>'
+                    }
+                    document.getElementById("data").innerHTML = html;
                 });
             };
         </script>

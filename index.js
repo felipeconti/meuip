@@ -24,7 +24,10 @@ app.get('/meuip/data', function(req, res) {
 
 app.post('/', function(req, res) {
 	if (req.body.server)
-    	servers[req.body.server] = get_ip(req).clientIp;
+    	servers[req.body.server] = {
+			ip: get_ip(req).clientIp,
+			date: new Date()
+		}
 
     res.end();
 });
