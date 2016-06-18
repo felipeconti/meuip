@@ -11,7 +11,21 @@ app.use(bodyParser.json());
 var servers = {};
 
 app.get('/', function(req, res) {
-	res.end(get_ip(req).clientIp);
+	var html = "";
+
+	html += "<html>"
+	html += 	" <style>"
+	html += 		" body {"
+	html += 			" background-color: rgba(36, 36, 36, 36);"
+	html += 			" color: white"
+	html += 		" }"
+	html += 	" </style>"
+	html += 	" <body>"
+	html += 		get_ip(req).clientIp
+	html += 	" </body>"
+	html += "</html>"
+
+	res.end(html);
 });
 
 app.get('/meuip', function(req, res) {
