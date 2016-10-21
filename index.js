@@ -40,7 +40,7 @@ app.post('/', function(req, res) {
 	if (req.body.server && /[\x00-\x7F]/.test(req.body.server))
     	servers[req.body.server] = {
 			ip: get_ip(req).clientIp,
-			date: new Date()
+			date: new Date().toLocaleString()
 		}
 
     res.end();
